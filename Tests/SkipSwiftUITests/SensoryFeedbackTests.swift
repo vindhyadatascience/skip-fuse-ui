@@ -7,34 +7,34 @@ import SkipUI
 
 final class SensoryFeedbackTests: XCTestCase {
     func testWeightValuesAndBridgeIdentifiersAreDistinct() {
-        XCTAssertNotEqual(SensoryFeedback.Weight.light, .medium)
-        XCTAssertNotEqual(SensoryFeedback.Weight.medium, .heavy)
-        XCTAssertNotEqual(SensoryFeedback.Weight.light, .heavy)
-        let effects = [SensoryFeedback.Weight.light, .medium, .heavy].map {
-            SensoryFeedback.impact(weight: $0)
+        XCTAssertNotEqual(SkipSwiftUI.SensoryFeedback.Weight.light, .medium)
+        XCTAssertNotEqual(SkipSwiftUI.SensoryFeedback.Weight.medium, .heavy)
+        XCTAssertNotEqual(SkipSwiftUI.SensoryFeedback.Weight.light, .heavy)
+        let effects = [SkipSwiftUI.SensoryFeedback.Weight.light, .medium, .heavy].map {
+            SkipSwiftUI.SensoryFeedback.impact(weight: $0)
         }
         XCTAssertEqual(Set(effects.map { $0.identifier }).count, 3)
     }
 
     func testFlexibilityValuesAndBridgeIdentifiersAreDistinct() {
-        let values: [SensoryFeedback.Flexibility] = [.soft, .solid, .rigid]
+        let values: [SkipSwiftUI.SensoryFeedback.Flexibility] = [.soft, .solid, .rigid]
         XCTAssertEqual(Set(values).count, 3)
-        XCTAssertEqual(Set(values.map { SensoryFeedback.impact(flexibility: $0).identifier }).count, 3)
+        XCTAssertEqual(Set(values.map { SkipSwiftUI.SensoryFeedback.impact(flexibility: $0).identifier }).count, 3)
     }
 
     func testIntensitySurvivesTheNativeBridge() {
         let values = [0.0, 0.25, 0.5, 1.0].map {
-            SensoryFeedback.impact(weight: .medium, intensity: $0).identifier
+            SkipSwiftUI.SensoryFeedback.impact(weight: .medium, intensity: $0).identifier
         }
         XCTAssertEqual(Set(values).count, 4)
     }
 
     func testExistingBridgeConstantsRemainCompatible() {
-        XCTAssertEqual(SensoryFeedback.success.identifier, 1)
-        XCTAssertEqual(SensoryFeedback.warning.identifier, 2)
-        XCTAssertEqual(SensoryFeedback.error.identifier, 3)
-        XCTAssertEqual(SensoryFeedback.impact.identifier, 11)
-        XCTAssertEqual(SensoryFeedback.impact(weight: .medium), .impact)
+        XCTAssertEqual(SkipSwiftUI.SensoryFeedback.success.identifier, 1)
+        XCTAssertEqual(SkipSwiftUI.SensoryFeedback.warning.identifier, 2)
+        XCTAssertEqual(SkipSwiftUI.SensoryFeedback.error.identifier, 3)
+        XCTAssertEqual(SkipSwiftUI.SensoryFeedback.impact.identifier, 11)
+        XCTAssertEqual(SkipSwiftUI.SensoryFeedback.impact(weight: .medium), .impact)
     }
     func testNativeIdentifiersDecodeWithTheAndroidWireContract() throws {
         let weights: [(SkipSwiftUI.SensoryFeedback.Weight, HapticFeedbackImpact.Style)] = [
