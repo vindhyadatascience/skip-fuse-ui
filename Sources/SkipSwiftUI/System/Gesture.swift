@@ -479,7 +479,7 @@ extension TapGesture : Gesture {
         self.rawValue = rawValue
     }
 
-    public static let none = GestureMask(rawValue: 0) // For bridging
+    public static let none: GestureMask = GestureMask(rawValue: 0) // For bridging
 
     @available(*, unavailable)
     public static let gesture = GestureMask(rawValue: 2) // For bridging
