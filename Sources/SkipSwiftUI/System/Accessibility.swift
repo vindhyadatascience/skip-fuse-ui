@@ -872,7 +872,7 @@ public struct AccessibilityTechnologies : SetAlgebra, Sendable, OptionSet /* Add
     }
 
     public init() {
-        self = []
+        self.rawValue = 0
     }
 }
 
@@ -895,7 +895,7 @@ public struct AccessibilityTraits : SetAlgebra, OptionSet /* Added OptionSet con
     }
 
     public init() {
-        self = []
+        self.rawValue = 0
     }
 
     public static let isButton = AccessibilityTraits(rawValue: 1 << 0) // For bridging
