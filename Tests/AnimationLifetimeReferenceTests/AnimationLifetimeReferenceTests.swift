@@ -1,5 +1,5 @@
 // Copyright 2026 Skip
-#if os(macOS)
+#if os(macOS) && !ROBOLECTRIC
 import AppKit
 import SwiftUI
 import XCTest
